@@ -3,15 +3,15 @@ import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Gainesville-Events/', // Adjust to your repository name for GitHub Pages
+  base: '/Gainesville-Events/', // Ensure your project is pointing to the correct path
   resolve: {
     alias: {
-      'react-router-dom': 'react-router-dom',
+      'react-router-dom': 'react-router-dom', // Make sure the alias is correct
     },
   },
   build: {
     rollupOptions: {
-      external: ['react', 'react-dom', 'react-router-dom'], // Externalize these modules
+      external: [], // Keep this external for bundling
     },
   },
 });
