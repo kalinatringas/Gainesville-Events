@@ -2,16 +2,24 @@ import './App.css'
 import { useState } from 'react';
 import { Modal, Button } from 'rsuite'
 import 'rsuite/Modal/styles/index.css';
+import Filter from './Filter'
 
 export default function Kalina(){
 
     const [open, setOpen] = useState(false);
     const [modalId, setModalId] = useState(null);
+    const [filters, setFilters] = useState([]);
 
     const handleOpen = (id) => {
         setModalId(id); 
         setOpen(true);
     };    
+
+    const handleFilterChange = (selectedFilters ) =>{
+        setFilters(selectedFilters)
+    }
+
+
     
     const handleClose = () => {
         setOpen(false);
@@ -22,43 +30,53 @@ export default function Kalina(){
 
     const modalContent ={
         13: [
-            {label: "Grove Street Farmers Market @4-7pm", link: "https://maps.app.goo.gl/meGeemcuoYQxu3P97", note: "Me and my roomies fave"},
-            {label: "Dispicable Me 4 Movie on Flavet Field @6:00pm", link:"https://calendar.ufl.edu/event/43248-great-gator-welcome-back-movies-on-the-lawn", note:"MINIONS"}
+            {label: "Grove Street Farmers Market @4-7pm", link: "https://maps.app.goo.gl/meGeemcuoYQxu3P97", note: "Me and my roomies fave", tag:'markets'},
+            {label: "Dispicable Me 4 Movie on Flavet Field @6:00pm", link:"https://calendar.ufl.edu/event/43248-great-gator-welcome-back-movies-on-the-lawn", note:"MINIONS", tag:'on-campus'}
             ],
         14: [
-            {label: "Great Gator Welcome Reitz Lawn @ 11a-2p", link: "https://studentlife.ufl.edu/great-gator-welcome/"},
+            {label: "Great Gator Welcome Reitz Lawn @ 11a-2p", link: "https://studentlife.ufl.edu/great-gator-welcome/", tag: 'on-campus'},
             
-            {label: "Florida Basketball @ 9:00pm", link: "https://floridagators.com/sports/mens-basketball/schedule/2024-25"}
+            {label: "Florida Basketball @ 9:00pm", link: "https://floridagators.com/sports/mens-basketball/schedule/2024-25", tag: 'sports'}
             ], 
         15:[
-            {label:"Farmers Market at Celebration Pointe @4-7pm", link:"https://www.google.com/maps?q=Farmers+Market+at+Celebration+Pointe+3528+SW+45th+St,+Gainesville,+FL+32607"}
+            {label:"Farmers Market at Celebration Pointe @4-7pm", link:"https://www.google.com/maps?q=Farmers+Market+at+Celebration+Pointe+3528+SW+45th+St,+Gainesville,+FL+32607", tag:'markets'}
+        ],
+        16:[
+            {label:"Chill Before the Thrill @11-2pm", link:"https://calendar.ufl.edu/event/43251-great-gator-welcome-back-chill-before-the-thrill", tag:'on-campus'}
         ],
         17:[
-            {label:"Gatornights @7pm "}
+            {label:"Winter Thrillfest @7-11pm ", link:"https://calendar.ufl.edu/event/43251-great-gator-welcome-back-chill-before-the-thrill",tag: 'on-campus'}
         ],
         18:[
-            {label:"Saturday Farmers Market @8:30-noon", link:"https://441market.com/index.html#/"},
-            {label: "Florida Basketball @ 7:00pm", link:"https://floridagators.com/sports/mens-basketball/schedule/2024-25"}
+            {label:"Saturday Farmers Market @8:30-noon", link:"https://441market.com/index.html#/", tag: 'on-campus'},
+            {label: "Florida Basketball @ 7:00pm", link:"https://floridagators.com/sports/mens-basketball/schedule/2024-25", tag:'sports'}
         ],
         19:[
-            {label: " ! Florida Vintage Market ", link: "https://www.instagram.com/thefloridavintagemarket?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", note: "One of my favorites!! Highlyyyy reccomend"},
-            {label: "Florida Basketball @ 1:00pm", link: "https://floridagators.com/sports/mens-basketball/schedule/2024-25"}
+            {label: " ! Florida Vintage Market ", link: "https://www.instagram.com/thefloridavintagemarket?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", note: "One of my favorites!! Highlyyyy reccomend", tag: 'markets'},
+            {label: "Florida Basketball @ 1:00pm", link: "https://floridagators.com/sports/mens-basketball/schedule/2024-25", tag:'sports'}
         ],
         20:[
-            {label: "Grove Street Farmers Market @4-7pm", link:"https://maps.app.goo.gl/meGeemcuoYQxu3P97"}
+            {label: "Grove Street Farmers Market @4-7pm", link:"https://maps.app.goo.gl/meGeemcuoYQxu3P97", tag: 'markets'}
         ],
         21:[
-            {label: "Cirque Kalabanté @7:30 $12", link: "https://performingarts.ufl.edu/events/cirque-kalabante/", note: "I have not personally seen this show but I really wanna go see it"}
+            {label: "Cirque Kalabanté @7:30 $12", link: "https://performingarts.ufl.edu/events/cirque-kalabante/", note: "I have not personally seen this show but I really wanna go see it", tag: 'live-shows'}
         ],
         22:[
-            {label:"Gator Market at Reitz Lawn @10a-2p", link: "https://union.ufl.edu/gatormarket/", note:"if you want to sell stuff, the rates for students are really good"},
-            {label: "Farmers Market at Celebration Pointe @4-7pm", link:"https://www.google.com/maps?q=Farmers+Market+at+Celebration+Pointe+3528+SW+45th+St,+Gainesville,+FL+32607"},
+            {label:"Gator Market at Reitz Lawn @10a-2p", link: "https://union.ufl.edu/gatormarket/", note:"if you want to sell stuff, the rates for students are really good", tag: 'markets'},
+            {label: "Farmers Market at Celebration Pointe @4-7pm", link:"https://www.google.com/maps?q=Farmers+Market+at+Celebration+Pointe+3528+SW+45th+St,+Gainesville,+FL+32607", tag: 'markets'},
             {label: "Open Mic at How Bazar @8-10p"}
         ],
         25:[
-            {label: "Hoggetowne Medieval Faire", link:"https://maps.google.com/?q=Hoggetowne+Medieval+Faire%3A+Hoggetowne+Goes+Downtown+200+SE+Depot+Ave.%2C+Gainesville%2C+FL+32601", note: "HIGHTLY RECCOMENT BEST EVENT OF THE YEAR YAAS"}
+            {label: "Hoggetowne Medieval Faire", link:"https://maps.google.com/?q=Hoggetowne+Medieval+Faire%3A+Hoggetowne+Goes+Downtown+200+SE+Depot+Ave.%2C+Gainesville%2C+FL+32601", note: "HIGHTLY RECCOMENT BEST EVENT OF THE YEAR YAAS", tag:'markets'}
         ]
     };
+
+    const filteredContent = modalId && modalContent[modalId]
+    ? modalContent[modalId].filter(item =>
+        filters.length === 0 || filters.includes('all') || filters.includes(item.tag)
+      )
+    : [];
+
 
 
     return<>
@@ -94,8 +112,10 @@ export default function Kalina(){
         </tr>
         </table>
         </div>
+        <Filter onFilterChange={handleFilterChange}/>
         <article>
-            I like fun house parties, markets, and free stuff on campus!
+            I like house shows, markets, and free stuff on campus!
+    
         </article>
 
         <h3>Kalinas favorite places to be on campus:</h3>
@@ -114,25 +134,21 @@ export default function Kalina(){
         open={open}
         onClose={handleClose} >
         <Modal.Header>
-         <Modal.Title>Modal Title</Modal.Title>
+         <Modal.Title>Events on this Date!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {modalContent[modalId] ? (
+            {filteredContent.length > 0 ?  (
                         <ul>
-                            {modalContent[modalId].map((item, index, note) => (
-                             
-                                <text key={index}>
-                                    <li>
-                                    <a href = {item.link} target='_blank' rel="noopener noreferrer">
-                                    {item.label}</a>
-                                    </li>
-                                    <dd>{item.note}</dd>
-                                    </text>                          
+                             {filteredContent.map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.link} target='_blank' rel="noopener noreferrer">{item.label}</a>
+                                    {item.note && <p>{item.note}</p>}
+                                </li>
                             ))}
                         </ul>
                     ) : (
-                        <p>No details available for this date.</p>
-                    )}        
+                        <p>Nothing going on here!</p>
+                    )}       
             </Modal.Body>
         <Modal.Footer>
         <Button onClick={handleClose} appearance="primary">
@@ -140,5 +156,6 @@ export default function Kalina(){
         </Button>
         </Modal.Footer>
         </Modal>
+       
     </>
 }

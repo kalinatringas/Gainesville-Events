@@ -2,7 +2,7 @@
   font-family: 'Times New Roman', Times, serif;
   line-height: 1.5;
   font-weight: 400;
-
+  overflow: auto;
   color: rgba(0, 0, 0, 0.87);
   background-color: #90caf0;
 
@@ -15,10 +15,31 @@
 
 body {
   margin: 0;
+  overflow: auto;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+.filter{
+  text-align: left;
+  position: fixed;
+  left: 5vw;
+  top: 20%;
+  background: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  width: 10vw;
+  height: fit-content;
+  display: flex;
+}
+@media (max-width: 1010px){
+  .filter{
+    position: relative;
+    width: 50vw;
+    margin: 10px auto;
+    display: block;
+  }
 }
 
 h1 {
@@ -63,6 +84,7 @@ table{
 article{
   max-width: 95%;
   margin: 10px auto;
+  overflow-y: scroll;
 }
 
 th{
@@ -77,6 +99,7 @@ td{
 
 td:hover{
   background-color:#afcfcf;
+  scale:1.05;
 }
 
 button {
@@ -94,7 +117,7 @@ button {
 
 button:hover {
   background-color: rgb(198, 221, 240);
-
+  scale: 1.05;
 }
 
 button:focus,
