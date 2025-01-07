@@ -1,10 +1,8 @@
 import { Accordion } from 'rsuite';
 import 'rsuite/Accordion/styles/index.css';
-import { kalinaRest } from './extraData';
+import { kalinaRest, sophieRest } from './extraData';
 
 export default function Locations(){
-
-
 
     return(
         <div>
@@ -16,19 +14,63 @@ export default function Locations(){
                             <th className='th-extras'>Kalina</th>
                             <th className='th-extras'>Sophie</th>
                         </thead>
-                        <tbody>
-                             {kalinaRest.map(item => <th key={item}>{item}</th>)}
+                        <tbody className='container'>
+                            <th> 
+                                {kalinaRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                            <th>
+                                {sophieRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
                         </tbody>
                     </table>
                 </Accordion.Panel>
                 <Accordion.Panel header="Favorite Sweet Treats" >   
-                    <text>meow bruh</text>
+                <table className='center-extra'>
+                        <thead>
+                            <th className='th-extras'>Kalina</th>
+                            <th className='th-extras'>Sophie</th>
+                        </thead>
+                        <tbody className='container'>
+                            <th> 
+                                {kalinaRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                            <th>
+                                {sophieRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                        </tbody>
+                    </table>
                 </Accordion.Panel>
                 <Accordion.Panel header="Favorite Hangout Spots" >   
-                    <text>meow bruh</text>
+                <table className='center-extra'>
+                        <thead>
+                            <th className='th-extras'>Kalina</th>
+                            <th className='th-extras'>Sophie</th>
+                        </thead>
+                        <tbody className='container'>
+                            <th> 
+                                {kalinaRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                            <th>
+                                {sophieRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                        </tbody>
+                    </table>
                 </Accordion.Panel>
                 <Accordion.Panel header="Day Trips!" >   
-                    <text>meow bruh</text>
+                <table className='center-extra'>
+                        <thead>
+                            <th className='th-extras'>Kalina</th>
+                            <th className='th-extras'>Sophie</th>
+                        </thead>
+                        <tbody className='container'>
+                            <th> 
+                                {kalinaRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                            <th>
+                                {sophieRest.map(item => <text key={item}>{item}<br/></text>)}
+                            </th>
+                        </tbody>
+                    </table>
                 </Accordion.Panel>
             </Accordion>
             
