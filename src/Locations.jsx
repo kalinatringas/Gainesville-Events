@@ -5,10 +5,9 @@ import { kalinaRest, sophieRest } from './extraData';
 export default function Locations(){
 
     return(
-        <div>
-            sorry! currenty under construction. 
-            <Accordion bordered > 
-                <Accordion.Panel header="Favorite Restaraunts" defaultExpanded>   
+        <div className='overflow-extras'>
+            <Accordion defaultActiveKey={1} bordered > 
+                <Accordion.Panel header="Favorite Restaraunts" eventKey={1}>   
                     <table className='center-extra'>
                         <thead>
                             <th className='th-extras'>Kalina</th>
@@ -24,7 +23,7 @@ export default function Locations(){
                         </tbody>
                     </table>
                 </Accordion.Panel>
-                <Accordion.Panel header="Favorite Sweet Treats" >   
+                <Accordion.Panel header="Favorite Sweet Treats" eventKey={2} >   
                 <table className='center-extra'>
                         <thead>
                             <th className='th-extras'>Kalina</th>
@@ -40,7 +39,7 @@ export default function Locations(){
                         </tbody>
                     </table>
                 </Accordion.Panel>
-                <Accordion.Panel header="Favorite Hangout Spots" >   
+                <Accordion.Panel header="Favorite Hangout Spots" eventKey={3}>   
                 <table className='center-extra'>
                         <thead>
                             <th className='th-extras'>Kalina</th>
@@ -56,7 +55,7 @@ export default function Locations(){
                         </tbody>
                     </table>
                 </Accordion.Panel>
-                <Accordion.Panel header="Day Trips!" >   
+                <Accordion.Panel header="Day Trips!" eventKey={4}>   
                 <table className='center-extra'>
                         <thead>
                             <th className='th-extras'>Kalina</th>
@@ -73,8 +72,6 @@ export default function Locations(){
                     </table>
                 </Accordion.Panel>
             </Accordion>
-            
-
         </div>
     )
 }
