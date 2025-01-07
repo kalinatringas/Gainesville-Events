@@ -21,3 +21,20 @@ p{
   background-color: white;
   top: 10%
 }
+.center{
+  margin: auto;
+}
+
+.rs-nav-pills {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  margin: auto;
+  display: inline-flex;
+  background-color: #f2f2f5;
+  background-color: var(--rs-navs-pills-bg);
+  border-radius: 6px;
+  padding: 4px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}

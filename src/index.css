@@ -19,8 +19,9 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
 }
+
 .filter{
   text-align: left;
   position: fixed;
@@ -32,7 +33,14 @@ body {
   width: 10vw;
   height: fit-content;
   display: flex;
+
 }
+.container{
+  overflow: auto;
+  padding: 10px;
+  height: 50vh;
+}
+
 @media (max-width: 1010px){
   .filter{
     position: relative;
@@ -40,16 +48,18 @@ body {
     margin: 10px auto;
     display: block;
   }
+  .container{
+    height: 25vh;
+  }
 }
 
 h1 {
   font-size: 20px;
   width: 50%;
   box-shadow: 5px 5px rgb(140, 141, 147);
-  margin: auto;
   margin-top: 50px;
   border-radius: 8px;
-  margin-top: 10px;
+  margin: auto;
   background-color: aliceblue;
   border-color:rgb(191, 212, 230);
   padding: 20px;
@@ -81,6 +91,8 @@ table{
   max-width: 95vw; 
 }
 
+
+
 article{
   max-width: 95%;
   margin: 10px auto;
@@ -92,9 +104,15 @@ th{
   border-radius: 5px;
 }
 
+
 td{
   background-color: #D6EEEE;
+  width: 100px;
   border-radius: 5px;
+}
+
+.rs-badge {
+  width: 100%;
 }
 
 td:hover{
@@ -123,4 +141,9 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.center{
+  margin:auto;
+  place-content: center;
 }
