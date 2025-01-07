@@ -4,7 +4,7 @@
   font-weight: 400;
   overflow: auto;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #90caf0;
+  background-image: radial-gradient(#90caf0, #ffff);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,10 +35,30 @@ body {
   display: flex;
 
 }
+
+.rs-panel-group{
+  background-color: aliceblue;
+  border-radius: 8px;
+  width: 80vw;
+  max-height: 100vh;
+  max-width: 700px;
+}
+.rs-panel-header{
+  width: 100%;
+}
+.th-extras{
+  max-height: 20px;
+  margin: auto;
+}
+
 .container{
   overflow: auto;
-  padding: 10px;
-  height: 50vh;
+  background-color: aliceblue;
+  margin:10px auto;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  max-height: 50vh;
+  min-height: fit-content;
 }
 
 @media (max-width: 1010px){
@@ -49,7 +69,7 @@ body {
     display: block;
   }
   .container{
-    height: 25vh;
+    max-height: 25vh;
   }
 }
 
@@ -132,10 +152,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+.rs-nav-item:hover{
+  scale:1.05;
+}
 
 button:hover {
   background-color: rgb(198, 221, 240);
-  scale: 1.05;
 }
 
 button:focus,
@@ -146,4 +168,16 @@ button:focus-visible {
 .center{
   margin:auto;
   place-content: center;
+}
+
+.center-extra{
+  margin:auto;
+  background-color: rgb(190, 227, 245);
+  
+  width: 100%;
+  place-content: center;
+}
+
+.td-extras{
+  background-color: #eff5fb;
 }

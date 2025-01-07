@@ -69,7 +69,7 @@ export default function Kalina(){
         </td>))}  
         </tr>
         <tr>
-            {[...Array(25-19+1)].map((_, i)=><td onClick={() => handleOpen(12+i)}>
+            {[...Array(25-19+1)].map((_, i)=><td onClick={() => handleOpen(19+i)}>
                 <div className='badge-container'>
                 {countEvents(i+19)>0?(
                 <Badge key = {i+19} content={countEvents(i+19)}>

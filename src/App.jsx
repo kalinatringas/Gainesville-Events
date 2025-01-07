@@ -24,6 +24,9 @@ function App() {
     <Tabs.Tab eventKey="3" title="Kalina"className='tabLabels'>
       <Kalina/>
     </Tabs.Tab>
+    <Tabs.Tab eventKey='4' title="Extras" className='tabLabels'>
+      <Locations/>
+    </Tabs.Tab>
   </Tabs>
     </>
   )

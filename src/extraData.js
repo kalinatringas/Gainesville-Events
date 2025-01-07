@@ -1,0 +1,1 @@
+export const kalinaRest = ["Meow", "yasss", "lalallala "] 

@@ -1,17 +1,29 @@
 import './App.css'
 import { useState } from 'react';
-import { Modal, Button } from 'rsuite'
+import { Modal, Button , Badge} from 'rsuite'
 import 'rsuite/Modal/styles/index.css';
+import Filter from './Filter';
+import 'rsuite/Badge/styles/index.css';
+import {kalinaEvents} from './eventData.js'
 
 export default function Sophie(){
 
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
     const [open, setOpen] = useState(false);
     const [modalId, setModalId] = useState(null);
+    const [filters, setFilters] = useState([]);
 
     const handleOpen = (id) => {
         setModalId(id); 
         setOpen(true);
     };    
+
+    const handleFilterChange = (selectedFilters ) =>{
+        setFilters(selectedFilters)
+    }
+
+
     
     const handleClose = () => {
         setOpen(false);
@@ -20,76 +32,86 @@ export default function Sophie(){
         }, 300);
     };
 
-    const modalContent ={
-    
-    }
+    const modalContent = kalinaEvents
+
+    const filteredContent = modalId && modalContent[modalId]
+    ? modalContent[modalId].filter(item =>
+        filters.length === 0 || filters.includes('all') || filters.includes(item.tag)
+      )
+    : [];
+
+    const countEvents = (index) => { //add filtering feature
+        return kalinaEvents[index] ? kalinaEvents[index].filter(item =>
+            filters.length === 0 || filters.includes('all') || filters.includes(item.tag)
+          ).length : 0 //goes is the index greater than one? cool! here is the number
+    };
 
 
-    return<>
+
+
+    return(<div>
     <h2>January</h2>
     <div className='table-container'>
         <table>
             <tr>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
+            {daysOfWeek.map(day => <th key={day}>{day}</th>)}
             </tr>
         <tr>
-            <td onClick={() => handleOpen(12)} id='12'>12</td>
-            <td onClick={() => handleOpen(13)} id='13'>13</td>
-            <td onClick={() => handleOpen(14)} id='14'>14</td>
-            <td onClick={() => handleOpen(15)} id='15'>15</td>
-            <td onClick={() => handleOpen(16)} id='16'>16</td>
-            <td onClick={() => handleOpen(17)} id='17'>17</td>
-            <td onClick={() => handleOpen(18)} id='18'>18</td>
+        {[...Array(18 - 12 + 1)].map((_, i) => ( <td key={i+12} onClick={() => handleOpen(12 + i)}>
+            <div className='badge-container'>
+                {countEvents(i+12) > 0?(
+                <Badge key={i + 12} content={countEvents(i+12)}>
+                    {12 + i}
+                </Badge>):(
+                    12 + i )
+                }
+            </div>
+        </td>))}  
         </tr>
         <tr>
-            <td onClick={() => handleOpen(19)} id ='19'>19</td>
-            <td onClick={() => handleOpen(20)} id ='20'>20</td>
-            <td onClick={() => handleOpen(21)} id ='21'>21</td>
-            <td onClick={() => handleOpen(22)} id ='22'>22</td>
-            <td onClick={() => handleOpen(23)} id ='23'>23</td>
-            <td onClick={() => handleOpen(24)} id ='24'>24</td>
-            <td onClick={() => handleOpen(25)} id ='25'>25</td>
+            {[...Array(25-19+1)].map((_, i)=><td onClick={() => handleOpen(19+i)}>
+                <div className='badge-container'>
+                {countEvents(i+19)>0?(
+                <Badge key = {i+19} content={countEvents(i+19)}>
+                 {i+19}
+                </Badge>):
+                (19+i)}
+            </div>
+        </td>)}
+
         </tr>
         </table>
+        </div>      
+            <Filter onFilterChange={handleFilterChange}/> 
+             <div className='container'>
+            meow
         </div>
-        <article>
-            You can check out all my favorite events by hoovering over and clicking!
-        </article>
         <Modal
         open={open}
         onClose={handleClose} >
         <Modal.Header>
-         <Modal.Title>Modal Title</Modal.Title>
+         <Modal.Title>Events on this Date!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {modalContent[modalId] ? (
+            {filteredContent.length > 0 ?  (
                         <ul>
-                            {modalContent[modalId].map((item, index, note) => (
-                             
-                                <text key={index}>
-                                    <li>
-                                    <a href = {item.link} target='_blank' rel="noopener noreferrer">
-                                    {item.label}</a>
-                                    </li>
-                                    <dd>{item.note}</dd>
-                                    </text>                          
+                             {filteredContent.map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.link} target='_blank' rel="noopener noreferrer">{item.label}</a>
+                                    {item.note && <p>{item.note}</p>}
+                                </li>
                             ))}
                         </ul>
                     ) : (
-                        <p>No details available for this date.</p>
-                    )} 
+                        <p>Nothing going on here!</p>
+                    )}       
             </Modal.Body>
         <Modal.Footer>
-          <Button onClick={handleClose} appearance="primary">
+        <Button onClick={handleClose} appearance="primary">
             Ok
-          </Button>
+        </Button>
         </Modal.Footer>
         </Modal>
-    </>
+    </div>
+    )
 }
